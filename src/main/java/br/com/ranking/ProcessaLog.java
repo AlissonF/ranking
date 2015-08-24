@@ -15,7 +15,9 @@ public class ProcessaLog {
         FileInputStream fis = null;
         
         try {
-            fis = new FileInputStream("C:\\java\\workspaces\\workspace_java\\ranking\\src\\main\\java\\br\\com\\ranking\\resources\\log.txt");
+            //fis = new FileInputStream("C:\\java\\workspaces\\workspace_java\\ranking\\src\\main\\java\\br\\com\\ranking\\resources\\log.txt");
+        	fis = new FileInputStream("/home/alisson/Documentos/workspaces/workspace_git/ranking/src/main/java/br/com/ranking/resources/log.txt");
+        	
             listOcorrencias = new ArrayList<String>();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
