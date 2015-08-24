@@ -11,8 +11,6 @@ public class Jogo {
     
     
     public static void main(String[] args) {
-    	
-    	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
         
         ProcessaLog procesaLog = new ProcessaLog();
         List<String> logs = procesaLog.getLogs();
@@ -24,28 +22,10 @@ public class Jogo {
             String dataParts[] = log.split("-");
             
             if(dataParts[1].contains("started")){
-            	Calendar calendar = Calendar.getInstance();
-            	Date date = null;
-            	try {
-					date = sdf.parse(dataParts[0]);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-            	calendar.setTime(date);
-                partida.setInicio(calendar);
+                partida.setInicio(processaData(dataParts[0]));
             }else if(dataParts[1].contains("ended")){
-            	Calendar calendar = Calendar.getInstance();
-            	Date date = null;
-            	try {
-					date = sdf.parse(dataParts[0]);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-            	calendar.setTime(date);
-                partida.setInicio(calendar);
-                partida.setFim(calendar);
+                partida.setFim(processaData(dataParts[0]));
             }else{
-                
                 
 //            Ocorrencia ocorrencia = new Ocorrencia();
 //            ocorrencia.setData();
@@ -59,13 +39,27 @@ public class Jogo {
             	
             }
         }
-        
-        
-       
     }
     
     private void montaJogador(){
         
     }
+    
+    private static Calendar processaData(String data){
+    	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	Date date = null;
+			try {
+				date = sdf.parse(data);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	calendar.setTime(date);
+    	return calendar;
+    }
+    
+    
     
 }
